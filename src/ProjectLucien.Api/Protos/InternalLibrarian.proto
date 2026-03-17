@@ -1,0 +1,101 @@
+syntax = "proto3";
+
+option csharp_namespace = "ProjectLucien.Api.Protos";
+
+package librarian;
+
+// InternalLibrarian service for tenant management operations.
+// This service provides gRPC endpoints for internal tenant lifecycle management.
+
+service InternalLibrarian {
+    // Creates a new tenant
+    rpc CreateTenant (CreateTenantRequest) returns (TenantResponse);
+    
+    // Retrieves a tenant by its ID
+    rpc GetTenant (GetTenantRequest) returns (TenantResponse);
+    
+    // Activates a tenant, making it fully operational
+    rpc ActivateTenant (ActivateTenantRequest) returns (TenantResponse);
+    
+    // Suspends a tenant (e.g., due to non-payment)
+    rpc SuspendTenant (SuspendTenantRequest) returns (TenantResponse);
+    
+    // Archives a tenant, marking it as no longer active
+    rpc ArchiveTenant (ArchiveTenantRequest) returns (TenantResponse);
+    
+    // Adds an API key to a tenant
+    rpc AddApiKey (AddApiKeyRequest) returns (ApiKeyResponse);
+}
+
+// Request messages
+
+message CreateTenantRequest {
+    string name = 1;
+    string slug = 2;
+    TenantPlan plan = 3;
+    string region = 4;
+}
+
+message GetTenantRequest {
+    string tenant_id = 1;
+}
+
+message ActivateTenantRequest {
+    string tenant_id = 1;
+}
+
+message SuspendTenantRequest {
+    string tenant_id = 1;
+    string reason = 2;
+}
+
+message ArchiveTenantRequest {
+    string tenant_id = 1;
+}
+
+message AddApiKeyRequest {
+    string tenant_id = 1;
+    string key_name = 2;
+    // Unix timestamp in seconds, optional (0 means no expiration)
+    int64 expires_at = 3;
+}
+
+// Response messages
+
+message TenantResponse {
+    string tenant_id = 1;
+    string name = 2;
+    string slug = 3;
+    TenantStatus status = 4;
+    TenantPlan plan = 5;
+    string region = 6;
+    string auth0_organization_id = 7;
+    repeated ApiKeyResponse api_keys = 8;
+    int64 created_at = 9;
+    int64 updated_at = 10;
+}
+
+message ApiKeyResponse {
+    string id = 1;
+    string name = 2;
+    int64 created_at = 3;
+    int64 expires_at = 4;
+    bool is_revoked = 5;
+}
+
+// Enums
+
+enum TenantPlan {
+    TENANT_PLAN_UNSPECIFIED = 0;
+    TENANT_PLAN_FREE = 1;
+    TENANT_PLAN_PRO = 2;
+    TENANT_PLAN_ENTERPRISE = 3;
+}
+
+enum TenantStatus {
+    TENANT_STATUS_UNSPECIFIED = 0;
+    TENANT_STATUS_PENDING = 1;
+    TENANT_STATUS_ACTIVE = 2;
+    TENANT_STATUS_SUSPENDED = 3;
+    TENANT_STATUS_ARCHIVED = 4;
+}

@@ -1,0 +1,172 @@
+syntax = "proto3";
+
+package projectlucien.api.odata;
+
+option csharp_namespace = "ProjectLucien.Api.OData";
+
+/// <summary>
+/// OData service for tenant queries with full OData protocol support.
+/// </summary>
+service ODataFacet {
+    /// <summary>
+    /// Queries tenants using OData syntax.
+    /// Supports $filter, $select, $orderby, $top, $skip.
+    /// </summary>
+    rpc QueryTenants (ODataRequest) returns (ODataResponse);
+
+    /// <summary>
+    /// Gets a single tenant by ID using OData.
+    /// </summary>
+    rpc GetTenant (TenantKeyRequest) returns (TenantResponse);
+
+    /// <summary>
+    /// Creates a new tenant via OData action.
+    /// </summary>
+    rpc CreateTenant (CreateTenantRequest) returns (TenantResponse);
+
+    /// <summary>
+    /// Updates an existing tenant via OData action.
+    /// </summary>
+    rpc UpdateTenant (UpdateTenantRequest) returns (TenantResponse);
+
+    /// <summary>
+    /// Deletes a tenant via OData action.
+    /// </summary>
+    rpc DeleteTenant (TenantKeyRequest) returns (DeleteResponse);
+}
+
+/// <summary>
+/// OData request message for querying entities.
+/// </summary>
+message ODataRequest {
+    /// <summary>
+    /// The OData query string (without the leading ?).
+    /// Example: $filter=Name eq 'Acme'&$orderby=CreatedAt desc&$top=10
+    /// </summary>
+    string odata_query = 1;
+    
+    /// <summary>
+    /// Optional entity set name.
+    /// </summary>
+    string entity_set = 2;
+}
+
+/// <summary>
+/// Request message for getting a tenant by key.
+/// </summary>
+message TenantKeyRequest {
+    /// <summary>
+    /// The tenant ID (GUID format).
+    /// </summary>
+    string tenant_id = 1;
+    
+    /// <summary>
+    /// Optional OData $select parameter.
+    /// </summary>
+    string select = 2;
+}
+
+/// <summary>
+/// Request message for creating a tenant.
+/// </summary>
+message CreateTenantRequest {
+    /// <summary>
+    /// The name of the tenant.
+    /// </summary>
+    string name = 1;
+    
+    /// <summary>
+    /// The URL-safe slug for the tenant.
+    /// </summary>
+    string slug = 2;
+    
+    /// <summary>
+    /// The subscription plan.
+    /// </summary>
+    string plan = 3;
+    
+    /// <summary>
+    /// The geographical region.
+    /// </summary>
+    string region = 4;
+    
+    /// <summary>
+    /// Optional Auth0 organization ID.
+    /// </summary>
+    string auth0_organization_id = 5;
+}
+
+/// <summary>
+/// Request message for updating a tenant.
+/// </summary>
+message UpdateTenantRequest {
+    /// <summary>
+    /// The tenant ID (GUID format).
+    /// </summary>
+    string tenant_id = 1;
+    
+    /// <summary>
+    /// The updated name (optional).
+    /// </summary>
+    string name = 2;
+    
+    /// <summary>
+    /// The updated slug (optional).
+    /// </summary>
+    string slug = 3;
+    
+    /// <summary>
+    /// The updated plan (optional).
+    /// </summary>
+    string plan = 4;
+    
+    /// <summary>
+    /// The updated region (optional).
+    /// </summary>
+    string region = 5;
+}
+
+/// <summary>
+/// Generic OData response message.
+/// </summary>
+message ODataResponse {
+    /// <summary>
+    /// JSON-encoded OData response with @odata.context.
+    /// </summary>
+    string json_payload = 1;
+    
+    /// <summary>
+    /// Total count if $count=true was requested.
+    /// </summary>
+    int64 total_count = 2;
+}
+
+/// <summary>
+/// Tenant response message.
+/// </summary>
+message TenantResponse {
+    /// <summary>
+    /// JSON-encoded tenant entity.
+    /// </summary>
+    string json_payload = 1;
+    
+    /// <summary>
+    /// OData context URL.
+    /// </summary>
+    string odata_context = 2;
+}
+
+/// <summary>
+/// Generic delete response.
+/// </summary>
+message DeleteResponse {
+    /// <summary>
+    /// Whether the deletion was successful.
+    /// </summary>
+    bool success = 1;
+    
+    /// <summary>
+    /// Optional error message if deletion failed.
+    /// </summary>
+    string error_message = 2;
+}

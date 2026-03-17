@@ -1,0 +1,95 @@
+# Build results
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/[Rr]elease/
+[Oo]bj/[Rr]elease/
+publish/
+*.publish.xml
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.DotSettings.user
+*.resharper
+_ReSharper.*/
+*.vsp
+*.psess
+*.aps
+
+# JetBrains Rider
+.idea/
+*.iml
+# Uncomment if you do NOT want to share run configs:
+# .run/
+
+# VS Code
+.vscode/
+!.vscode/extensions.json
+
+# MSBuild
+project.lock.json
+project.fragment.lock.json
+artifacts/
+*.cache
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Mac
+.DS_Store
+.DS_Store?
+
+# Linux
+*~
+
+# NuGet
+*.nupkg
+nuget.exe
+packages/
+project.packages.json
+project.json
+!**/packages/*.nupkg
+
+# Test Results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# Secrets
+appsettings.*.json
+!appsettings.json
+!appsettings.Development.json
+*.pfx
+*.key
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+logs/
+
+# Build artifacts
+*.dll
+*.exe
+*.pdb
+*.xml
+
+# Merge conflict remnants
+*.orig
+# Local folder (environment-specific files)
+.local/
