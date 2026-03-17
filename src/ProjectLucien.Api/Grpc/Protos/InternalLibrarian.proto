@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option csharp_namespace = "ProjectLucien.Api.Protos";
+option csharp_namespace = "ProjectLucien.Api.Grpc.Protos";
 
 package librarian;
 

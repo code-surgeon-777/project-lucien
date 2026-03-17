@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace ProjectLucien.Api.Controllers;
+namespace ProjectLucien.Api.Shared.Health;
 
 [ApiController]
 [Route("[controller]")]

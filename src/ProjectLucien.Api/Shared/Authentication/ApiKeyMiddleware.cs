@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using ProjectLucien.Domain.ValueObjects;
 using ProjectLucien.Infrastructure;
 
-namespace ProjectLucien.Api.Middleware;
+namespace ProjectLucien.Api.Shared.Authentication;
 
 /// <summary>
 /// Middleware for validating API keys on incoming HTTP requests.

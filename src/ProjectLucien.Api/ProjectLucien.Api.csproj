@@ -22,8 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Protobuf Include="Protos/InternalLibrarian.proto" GrpcServices="Server" />
-    <Protobuf Include="Protos/ODataFacet.proto" GrpcServices="Server" />
+    <Protobuf Include="Grpc/Protos/InternalLibrarian.proto" GrpcServices="Server" />
+    <Protobuf Include="Grpc/Protos/ODataFacet.proto" GrpcServices="Server" />
   </ItemGroup>
 
   <ItemGroup>

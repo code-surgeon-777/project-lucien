@@ -1,13 +1,13 @@
 using Grpc.Core;
-using ProjectLucien.Api.Protos;
+using ProjectLucien.Api.Grpc.Protos;
 using ProjectLucien.Domain.Entities;
 using ProjectLucien.Domain.Ports.Inbound;
 using DomainTenantPlan = ProjectLucien.Domain.ValueObjects.TenantPlan;
 using DomainTenantStatus = ProjectLucien.Domain.ValueObjects.TenantStatus;
-using ProtosTenantPlan = ProjectLucien.Api.Protos.TenantPlan;
-using ProtosTenantStatus = ProjectLucien.Api.Protos.TenantStatus;
+using ProtosTenantPlan = ProjectLucien.Api.Grpc.Protos.TenantPlan;
+using ProtosTenantStatus = ProjectLucien.Api.Grpc.Protos.TenantStatus;
 
-namespace ProjectLucien.Api.Services;
+namespace ProjectLucien.Api.Grpc.Services;
 
 /// <summary>
 /// gRPC service implementation for InternalLibrarian.

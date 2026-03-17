@@ -6,7 +6,7 @@ using ProjectLucien.Domain.Ports.Inbound;
 using ProjectLucien.Domain.Ports.Outbound;
 using ProjectLucien.Domain.ValueObjects;
 
-namespace ProjectLucien.Api.Controllers;
+namespace ProjectLucien.Api.OData;
 
 /// <summary>
 /// OData controller for tenant operations.

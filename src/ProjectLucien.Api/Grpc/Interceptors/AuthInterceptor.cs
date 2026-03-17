@@ -2,7 +2,7 @@ using Grpc.Core;
 using Grpc.Core.Interceptors;
 using Microsoft.Extensions.Logging;
 
-namespace ProjectLucien.Api.Interceptors;
+namespace ProjectLucien.Api.Grpc.Interceptors;
 
 /// <summary>
 /// gRPC server interceptor for authenticating incoming service requests.

@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package projectlucien.api.odata;
 
-option csharp_namespace = "ProjectLucien.Api.OData";
+option csharp_namespace = "ProjectLucien.Api.Grpc.OData";
 
 /// <summary>
 /// OData service for tenant queries with full OData protocol support.
